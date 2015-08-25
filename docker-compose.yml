@@ -1,0 +1,11 @@
+db:
+  image: postgres
+web:
+  build: .
+  command: bundle exec rails server -b 0.0.0.0 -e development
+  volumes:
+    - .:/dvo305-demo
+  ports:
+    - "3000:3000"
+  links:
+    - db
