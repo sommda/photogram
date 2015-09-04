@@ -2,11 +2,14 @@ proxy:
   build: ./proxy
   ports:
     - "80:80"
+  environment:
+    - WEAVE_CIDR=""
 web:
   build: ./web
   command: bundle exec rails server -b 0.0.0.0
   environment:
     - RAILS_ENV=production
     - SECRET_KEY_BASE=eeb58e7c5a1f01d5f7ac66cda0a935dd42f994ccd599d848f90f0c8f264ffc89e3102a01c0dda815f1834de4e937d180ef6004efa55258df2d6be4a2e5a2c21f
+    - WEAVE_CIDR=""
   expose:
     - "3000"

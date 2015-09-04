@@ -1,2 +1,4 @@
 db:
   image: postgres
+  environment:
+     - WEAVE_CIDR=""
