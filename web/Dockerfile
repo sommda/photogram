@@ -7,4 +7,4 @@ ADD Gemfile.lock /tmp/
 RUN bundle install
 ADD . /opt/web
 WORKDIR /opt/web
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /var/tmp/*

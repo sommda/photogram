@@ -4,7 +4,7 @@ default: &default
   pool: 5
   username: postgres
   password:
-  host: db
+  host: dvo305demo_db_1.weave.local
 
 development:
   <<: *default
