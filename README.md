@@ -5,11 +5,10 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 ### Pre-requisites
 * Make sure you followed the [ECS getting started](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/get-set-up-for-amazon-ecs.html) steps before continuing.
 * For this demo we'll be using the us-east-1 region.
-* An AMI has been created and made public for this demo: **ami-79fc951c**. It's based on the *amzn-ami-2015.03.g-amazon-ecs-optimized* AMI and includes the tools required for the demo: git, Ruby, AWS CLI, Weave and Docker Compose.
 
 ### Steps
 1. [Create](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_AWSCLI.html#AWSCLI_create_cluster) two ECS clusters: *staging* and *production*.
-2. [Launch](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html) Container instances in both clusters using the demo AMI **ami-79fc951c**. Specify a Security Group that allows access to ports *TCP/80*, *TCP/8080* and *TCP/22*. Make sure you specify the ECS cluster to join in the user data section:
+2. [Launch](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_container_instance.html) Container instances in both clusters using the latest ECS Optimized AMI (*amzn-ami-2015.03.g-amazon-ecs-optimized* as of Sept 14th). Specify a Security Group that allows access to ports *TCP/80*, *TCP/8080* and *TCP/22*. Make sure you specify the ECS cluster to join in the user data section:
 
 		#!/bin/bash
 		# Join the ECS Cluster
@@ -22,10 +21,6 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 					{
 						"volumesFrom": [],
 						"memory": 1024,
-						"extraHosts": null,
-						"dnsServers": null,
-						"disableNetworking": null,
-						"dnsSearchDomains": null,
 						"portMappings": [
 							{
 								"hostPort": 8080,
@@ -33,7 +28,6 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 								"protocol": "tcp"
 							}
 						],
-						"hostname": null,
 						"essential": true,
 						"entryPoint": [],
 						"mountPoints": [
@@ -44,20 +38,11 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 							}
 						],
 						"name": "jenkins-ci",
-						"ulimits": null,
-						"dockerSecurityOptions": null,
-						"domainname": null,
 						"environment": [],
 						"links": [],
-						"workingDirectory": null,
-						"readonlyRootFilesystem": null,
 						"image": "jenkins",
 						"command": [],
-						"user": null,
-						"dockerLabels": null,
-						"logConfiguration": null,
-						"cpu": 100,
-						"privileged": null
+						"cpu": 100
 					}
 			],
 			"volumes": [
@@ -72,21 +57,21 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 		}
 
 4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard. Install the CloudBees Amazon Web Services Credentials Plugin and the Cloudbees ECS Plugin. Configure the ECS Plugin.
+5. Create Pipeline
+
+
+
+5. Start the app on your local environment
+
+		docker-compose up
 
 ## Script
 
 
 
-# Setup weave
-weave launch && weave launch-proxy -debug --with-dns
-weave status
-eval $(weave env)
 
 # When switching RAILS_ENV
 docker exec dvo305demo_web_1 rake db:create
 docker exec dvo305demo_web_1 rake db:migrate
-
-amzn-ami-2015.03.g-amazon-ecs-optimized - ami-4fe4852a
-Amazon Linux AMI 2015.03.g x86_64 ECS HVM GP2
 
 AMI for DVO305 Demo. Parent AMI: ami-4fe4852a. Includes: git, ruby, awscli, weave and docker-compose
