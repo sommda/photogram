@@ -56,22 +56,24 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 			"family": "jenkins-ci"
 		}
 
-4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard. Install and configure the Cloudbees ECS Plugin.
-5. Create Pipeline
-
-
-
-5. Start the app on your local environment
+4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard.
+5. Install and configure the Cloudbees ECS Plugin. Create a build job for the Photogram demo app. Restrict execution of the job to the ECS Slaves.
+6. Create Pipeline...
+7. Start the app on your local environment
 
 		docker-compose up
 
 ## Script
+### Development scenario
+1. Show app up and running
+2. Introduce small change
+3. Re-start app and show change
 
+### Build/Test scenario
+1. Show Jenkins and CodePipeline setup
+2. Show how images are built
 
-
-
-# When switching RAILS_ENV
-docker exec dvo305demo_web_1 rake db:create
-docker exec dvo305demo_web_1 rake db:migrate
-
-AMI for DVO305 Demo. Parent AMI: ami-4fe4852a. Includes: git, ruby, awscli, weave and docker-compose
+### Deployment scenario
+1. Show app (still old version)
+2. Push changes
+3. Wait for deployment, show new version
