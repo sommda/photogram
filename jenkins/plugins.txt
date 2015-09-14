@@ -1,0 +1,14 @@
+plain-credentials:1.1
+credentials:1.23
+mailer:1.15
+aws-credentials:1.9
+git-client:1.18.0
+scm-api:0.2
+git:2.4.0
+plain-credentials:1.1
+github-api:1.69
+github:1.13.3
+token-macro:1.10
+authentication-tokens:1.1
+docker-commons:1.0
+docker-build-publish:1.0

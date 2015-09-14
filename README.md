@@ -40,7 +40,7 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 						"name": "jenkins-ci",
 						"environment": [],
 						"links": [],
-						"image": "jenkins",
+						"image": "dstroppa/jenkins-dvo305-demo",
 						"command": [],
 						"cpu": 100
 					}
@@ -56,7 +56,7 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 			"family": "jenkins-ci"
 		}
 
-4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard. Install the CloudBees Amazon Web Services Credentials Plugin and the Cloudbees ECS Plugin. Configure the ECS Plugin.
+4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard. Install and configure the Cloudbees ECS Plugin.
 5. Create Pipeline
 
 
