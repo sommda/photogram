@@ -14,55 +14,13 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 		# Join the ECS Cluster
 		echo ECS_CLUSTER=<CLUSTER_NAME> >> /etc/ecs/ecs.config
 
-3. [Create](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/create-task-definition.html) a task definition for Jenkins:
-
-		{
-			"containerDefinitions": [
-					{
-						"volumesFrom": [],
-						"memory": 1024,
-						"portMappings": [
-							{
-								"hostPort": 8080,
-								"containerPort": 8080,
-								"protocol": "tcp"
-							}
-						],
-						"essential": true,
-						"entryPoint": [],
-						"mountPoints": [
-							{
-								"containerPath": "/var/run/docker.sock",
-								"sourceVolume": "docker_sock",
-								"readOnly": false
-							}
-						],
-						"name": "jenkins-ci",
-						"environment": [],
-						"links": [],
-						"image": "dstroppa/jenkins-dvo305-demo",
-						"command": [],
-						"cpu": 100
-					}
-			],
-			"volumes": [
-					{
-						"host": {
-							"sourcePath": "/var/run/docker.sock"
-						},
-						"name": "docker_sock"
-					}
-			],
-			"family": "jenkins-ci"
-		}
-
-4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard.
-5. Install and configure the Cloudbees ECS Plugin. Create a build job for the Photogram demo app. Restrict execution of the job to the ECS Slaves.
-6. Add a new **Freestyle project** job (e.g. photogram). Select the **Restrict where this project can be run** and add the label used when configuring the Cloudbees ECS Plugin (e.g. ECS_Slave). Configure the Github repository (e.g. https://github.com/awslabs/dvo305-demo) and select the **Build when a change is pushed to GitHub** option. Add a **Invoke Rake** step to execute the Spec tests.
-7. [Create a PostgreSQL RDS instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreatePostgreSQLInstance.html), allowing access to it from the ECS instances' Security Group. Once the instance is ready, update the details in `web/config/database.yml`.
-8. [Create](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deployment.newapp.html) a [Multicontainer Docker](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecs.html) Elastic Beanstalk Application.
-9. [Create a Pipeline](http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-pipelines.html) that gets the sources from Github and deploys to Elastic Beanstalk.
-10. Start the app on your local environment
+3. [Launch](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/LaunchingAndUsingInstances.html) an EC2 instance, connect to it and install Jenkins.
+4. Install and configure the Cloudbees ECS Plugin. Create a build job for the Photogram demo app. Restrict execution of the job to the ECS Slaves.
+5. Add a new **Freestyle project** job (e.g. photogram). Select the **Restrict where this project can be run** and add the label used when configuring the Cloudbees ECS Plugin (e.g. ECS_Slave). Configure the Github repository (e.g. https://github.com/awslabs/dvo305-demo) and select the **Build when a change is pushed to GitHub** option. Add a **Invoke Rake** step to execute the Spec tests.
+6. [Create a PostgreSQL RDS instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreatePostgreSQLInstance.html), allowing access to it from the ECS instances' Security Group. Once the instance is ready, update the details in `web/config/database.yml`.
+7. [Create](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.deployment.newapp.html) a [Multicontainer Docker](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker_ecs.html) Elastic Beanstalk Application.
+8. [Create a Pipeline](http://docs.aws.amazon.com/codepipeline/latest/userguide/how-to-create-pipelines.html) that gets the sources from Github and deploys to Elastic Beanstalk.
+9. Start the app on your local environment
 
 		docker-compose up
 
