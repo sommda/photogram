@@ -58,8 +58,9 @@ This is the demo for the 'Turbocharge Your Continuous Deployment Pipeline with C
 
 4. [Run a task](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_run_task.html) in the *staging* cluster using the Jenkins task definition. Once the task is running, point your browser to http://<CONTAINER_INSTANCE_IP_ADDR>:8080, you should now see the Jenkins Dashboard.
 5. Install and configure the Cloudbees ECS Plugin. Create a build job for the Photogram demo app. Restrict execution of the job to the ECS Slaves.
-6. Create Pipeline...
-7. Start the app on your local environment
+6. [Create a PostgreSQL RDS instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreatePostgreSQLInstance.html), allowing access to it from the ECS instances' Security Group. Once the instance is ready, update the details in `web/config/database.yml`.
+7. Create Pipeline...
+8. Start the app on your local environment
 
 		docker-compose up
 
