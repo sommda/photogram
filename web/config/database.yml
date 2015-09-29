@@ -18,7 +18,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: demoAdmin
-  password: Demo2015
-  host: dvo305-demo.copob5mk4xyd.us-east-1.rds.amazonaws.com
-  database: db_prod
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
