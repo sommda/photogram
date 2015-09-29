@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "proxy",
-      "image": "sommda/dvo305-proxy:BUILD_NUMBER",
+      "image": "sommda/dvo305-proxy:v_BUILD_NUMBER",
       "essential": true,
       "memory": 512,
       "portMappings": [
@@ -18,7 +18,7 @@
     },
     {
       "name": "web",
-      "image": "sommda/dvo305-web:BUILD_NUMBER",
+      "image": "sommda/dvo305-web:v_BUILD_NUMBER",
       "essential": true,
       "memory": 512,
       "portMappings": [
