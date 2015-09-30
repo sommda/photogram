@@ -16,3 +16,16 @@ web:
     - RDS_DB_NAME=ebdb
   expose:
     - "3000"
+test:
+  build: ./test
+  command: echo
+  environment:
+    - SECRET_KEY_BASE=eeb58e7c5a1f01d5f7ac66cda0a935dd42f994ccd599d848f90f0c8f264ffc89e3102a01c0dda815f1834de4e937d180ef6004efa55258df2d6be4a2e5a2c21f
+    - RDS_PASSWORD=photopwd
+    - RDS_HOSTNAME=aa1j2m85id06y3d.cj2pwphbdszk.us-east-1.rds.amazonaws.com
+    - RDS_PORT=5432
+    - RDS_USERNAME=photouser
+    - RDS_DB_NAME=ebdb
+  volumes:
+    - ./test:/opt/test
+
