@@ -13,7 +13,7 @@
         }
       ],
       "links": [
-        "web"
+        "web:dvo305demo_web_1"
       ]
     },
     {
