@@ -20,7 +20,7 @@
       "name": "web",
       "image": "sommda/dvo305-web:v_BUILD_NUMBER",
       "essential": true,
-      "memory": 2048,
+      "memory": 512,
       "portMappings": [
         {
           "hostPort": 3000,
